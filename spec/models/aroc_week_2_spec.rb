@@ -8,6 +8,8 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
 
 # Here are the docs associated with ActiveRecord queries: http://guides.rubyonrails.org/active_record_querying.html
 
+# bundle exec rspec spec/models/aroc_week_2_spec.rb:16
+
 # ----------------------
 
 
@@ -19,7 +21,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders_of_user_3 = Order.where(user_id: @user_3.id)
     # ------------------------------------------------------------
 
     # Expectation
@@ -38,7 +40,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders = Order.order("amount desc")
     # ------------------------------------------------------------
 
     # Expectation
@@ -57,7 +59,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders = Order.order(:amount)
     # ------------------------------------------------------------
 
     # Expectation
@@ -76,7 +78,8 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    items = Item.where.not(id: items_not_included)
+    items = Item.where.not(id: [@item_2, @item_5, @item_6])
     # ------------------------------------------------------------
 
     # Expectation
@@ -92,7 +95,12 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    grouped_items = order.items.order(:name)
+    grouped_items = Order.find(@order_3.id).items.order("items.name")
+    grouped_items = Order.find(@order_3.id).items.merge(Item.order(:name))
+
+    grouped_items = Item.joins(:orders).where(orders: {id: @order_3.id}).order(:name)
+    grouped_items = Item.joins(:order_items).where(order_items: {order_id: @order_3.id}).order(:name)
     # ------------------------------------------------------------
 
     # Expectation
@@ -107,7 +115,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    names = Item.pluck(:name)
     # ------------------------------------------------------------
 
     # Expectation
@@ -144,7 +152,9 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    names = Order.joins(:items).pluck(:name)
+    names = Item.joins(:orders).pluck(:name)
+    names = Order.joins(:items).pluck("items.name")
     # ------------------------------------------------------------
 
     # Expectation

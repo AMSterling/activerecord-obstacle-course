@@ -8,6 +8,8 @@ describe 'ActiveRecord Obstacle Course, Week 4' do
 
 # Here are the docs associated with ActiveRecord queries: http://guides.rubyonrails.org/active_record_querying.html
 
+# bundle exec rspec spec/models/aroc_week_4_spec.rb:16
+
 # ----------------------
 
 
@@ -17,7 +19,7 @@ describe 'ActiveRecord Obstacle Course, Week 4' do
     # -----------------------------------------------------------
 
     # ------------------ Using ActiveRecord ---------------------
-    # Solution goes here
+    total_sales = Order.sum(:amount)
     # -----------------------------------------------------------
 
     # Expectation
@@ -33,7 +35,7 @@ describe 'ActiveRecord Obstacle Course, Week 4' do
     # -----------------------------------------------------------
 
     # ------------------ Using ActiveRecord ---------------------
-    # Solution goes here
+    total_sales = Order.where.not(user_id: @user_2.id).sum(:amount)
     # -----------------------------------------------------------
 
     # Expectation
@@ -49,7 +51,7 @@ describe 'ActiveRecord Obstacle Course, Week 4' do
     # -----------------------------------------------------------
 
     # ------------------ Improved Solution ----------------------
-    #  Solution goes here
+    orders = Order.includes(:items).where(items: {id: @item_4.id})
     # -----------------------------------------------------------
 
     # Expectation
@@ -66,7 +68,7 @@ describe 'ActiveRecord Obstacle Course, Week 4' do
     # -----------------------------------------------------------
 
     # ------------------ Improved Solution ----------------------
-    #  Solution goes here
+    orders = Order.includes(:items).where(user_id: @user_2.id, items: {id: @item_4.id})
     # -----------------------------------------------------------
 
     # Expectation
@@ -88,7 +90,7 @@ describe 'ActiveRecord Obstacle Course, Week 4' do
     # ------------------------------------------------------------
 
     # ------------------ ActiveRecord Solution ----------------------
-    # Solution goes here
+    ordered_items = Item.joins(:orders).distinct.order(:name)
     # ---------------------------------------------------------------
 
     # Expectations

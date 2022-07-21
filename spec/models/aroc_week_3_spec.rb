@@ -8,6 +8,8 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
 
 # Here are the docs associated with ActiveRecord queries: http://guides.rubyonrails.org/active_record_querying.html
 
+# bundle exec rspec spec/models/aroc_week_3_spec.rb:16
+
 # ----------------------
 
 
@@ -27,7 +29,7 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    users = User.distinct(@item_8.id).pluck(:name)
     # ------------------------------------------------------------
 
     # Expectation
@@ -42,7 +44,7 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    names = Order.last.items.order("items.name").pluck(:name)
     # ------------------------------------------------------------
 
     # Expectation
@@ -66,7 +68,7 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    items_for_user_3_third_order = Order.where(user_id: @user_3.id).third.items.pluck(:name)
     # ------------------------------------------------------------
 
     # Expectation
@@ -79,7 +81,7 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
     # -----------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    average = Order.average(:amount)
     # ------------------------------------------------------------
 
     # Expectation
@@ -96,7 +98,7 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
     # -----------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    average = Order.where(user_id: @user_3.id).average(:amount)
     # ------------------------------------------------------------
 
     # Expectation

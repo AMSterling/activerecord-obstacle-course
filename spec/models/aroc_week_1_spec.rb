@@ -8,6 +8,7 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
 
 # Here are the docs associated with ActiveRecord queries: http://guides.rubyonrails.org/active_record_querying.html
 
+# bundle exec rspec spec/models/aroc_week_1_spec.rb:45
 # ----------------------
 
 
@@ -18,7 +19,8 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders_of_500 = Order.where(amount: 500)
+    orders_of_200 = Order.where(amount: 200)
     # ------------------------------------------------------------
 
     # Expectation
@@ -32,7 +34,8 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    order_id = Order.order(:amount).limit(1).first[:id]
+    order_id = Order.order(:amount).first[:id]
     # Your solution should not contain the ID of the order anywhere
     # ------------------------------------------------------------
 
@@ -46,7 +49,8 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    order_id = Order.order("amount desc").limit(1).first[:id]
+    order_id = Order.order("amount desc").first[:id]
     # Your solution should not contain the ID of the order anywhere
     # ------------------------------------------------------------
 
@@ -66,7 +70,8 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders_of_500_and_700 = Order.where(amount: 500).or(Order.where(amount: 700))
+    orders_of_700_and_1000 = Order.where(amount: 700).or(Order.where(amount: 1000))
     # ------------------------------------------------------------
 
     # Expectation
@@ -83,7 +88,7 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    items = Item.find([@item_1.id, @item_4.id, @item_2.id])
     # ------------------------------------------------------------
 
     # Expectation
@@ -98,7 +103,7 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders = Order.find([@order_3.id, @order_5.id, @order_1.id, @order_7.id])
     # ------------------------------------------------------------
 
     # Expectation
@@ -112,7 +117,7 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders_between_700_and_1000 = Order.where(amount: 700..1000)
     # ------------------------------------------------------------
 
     # Expectation
@@ -127,7 +132,7 @@ describe 'ActiveRecord Obstacle Course, Week 1' do
     # ------------------------------------------------------------
 
     # ------------------ Using ActiveRecord ----------------------
-    # Solution goes here
+    orders_less_than_550 = Order.where("amount   < 550")
     # ------------------------------------------------------------
 
     # Expectation

@@ -56,7 +56,7 @@ describe 'ActiveRecord Obstacle Course, Week 5' do
     # Zoolander      |         6
 
     # ------------------ ActiveRecord Solution ----------------------
-    custom_results = [users.name, orders.total_order_count]
+    custom_results = Order.where(user_id: @user.name)
     # ---------------------------------------------------------------
 
     expect(custom_results[0].name).to eq(@user_3.name)
